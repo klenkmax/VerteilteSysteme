@@ -1,0 +1,134 @@
+\documentclass[pagesize,11pt,a4paper]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\begin{document}
+\subsection*{Definitionen}
+\paragraph*{Verteiltes System}
+	Ansammlung unabhängiger Computer, die wie ein einzelnes System erscheinen; 
+	Menge interagierender Prozesse, über Nachrichten kommunizierend;
+
+\paragraph*{Ziele für Verteilte Systeme}
+	Gemeinsame Ressourcennutzung;
+	Transparenz (Zugriff, Ort, Migration, Relokation, Replikation, Nebenläufigkeit);
+	Offenheit (Spezifiziert u. Vollständigkeit. Folge: Interoperabel, Portabel) (sei konservativ in dem, was Du sendest, sei tolerant in dem, was Du empfängst);
+	Skalierbarkeit (Bottleneck, Single Point of Failure, etc) (durch Async, Aufteilung, etc);
+	
+\paragraph*{Cloud}
+	Abstraktion: logische / physikalische Transparenz; 
+
+\paragraph{Architekturen}
+	Geschichtet:ISO/OSI, Multi-Tier, Drei-Tier (Dispatch-Worker), Middleware;
+	Ereignisbasiert: Push/Subscribe
+	Objektbasiert: RMI/RPC;
+	Zentral: Client/Server;
+	Dezentral: Overlay: Mutlicast auf Anwendungsbene, P2P (Superpeer-Konzept);
+	Hybridformen
+	
+\paragraph{Prozess vs Thread}
+	Thread: leichtgewichter Prozess;
+	LWP: Vergleiche mit Worker in Java;
+
+\paragraph*{Mutex}
+	Lösung: Semaphoren, Monitore, Locks, Warten;
+	Konkurierender Zugriff (Deadlock, Starvation);
+	Lösungen: 
+		Tokenbasierte (Probleme: Tokenverlust, nur ein Token), 
+		Koordinator (Loadbalanic, etc, aber single point of failure, bottleneck),
+		Dezentraler Koordinator: (Jeder Prozess Kordiniert, Problem: ein Prozess stürzt ab) - 
+		Kordinatorbestimmung: 
+			Bully - Wahlnachricht an Prozesse höhere Nummern|Wenn kein Prozess antwortet, übernimmt Prozess| ansonsten rekursiv weiter,
+			Ring: Nachfolger Übernimmt (oder nächster) (Nachricht wird einmal rumgereicht)
+
+\paragraph*{ACID}
+	Transaktionskonsitenz:
+		Atomic Consistent Isolation Durability;
+	Transaktionsmonitor überwacht
+
+\paragraph*{ISO-Modell}
+	Physical, Data, Network, Transport, Session, Presentation, Application
+	
+\paragraph*{Stubs}
+	Stumpf (Anknüpfungspunkt);
+	Client-Stub: ersetzt lokalen Prozeduraufruf;
+	Parameter an Server, warten, etc;
+	Server-Stub: Operation, Datenverarbeiten;
+
+\paragraph*{RPC}
+	sync. Kontrollfluss/Datenuebergabe, Prozeduraufruf, unterschiedliche Adressräume, schmaler Kanal;
+	parallelität durch asynch;
+	
+\paragraph*{Berkeley Sockets}
+	Schnittstelle f. nachrichtenorientierte, fluechtige Kommunikation
+
+\paragraph*{MPI}
+	\\m/
+
+\paragraph*{Marshalling}
+	Umwandeln von strukturieren Daten in Übertragungsformat
+	
+\paragraph*{Serialisierung}
+	Sturkturierte Daten in sequenzielles Format (Speicherung, implementation von marschalling)
+	
+\paragraph*{Kommunikation}
+	persistent: Speicherung in Mittleware bis Zustellung;
+	transient (flüchtig): Anwendungsausführungszeit
+
+\paragraph{Chord}
+	Entität mit Schlüssel k -> Konten mit Bezeichner id >= k (bzw. k <= id). Nachfolger von k;
+	Suche: Knoten betrachtet Vogänger und Nachfolger, wenn Vorgängern < k < Konten -> Knoten zuständig, sonst weiterleitung;
+	Bei Fingertabelle: Ordne Schlüssel bei einträgen ein Eintrag i < k < Eintrag i+1 => Weiterleitung Eintrag 1 -> Sonst k an Knoten;
+	Hinzukommen/Verlassen: Einfach in Ring einbauen; Aktualisierung der Fingertabellen: Prüfen ob man Vorgänger des Nachfolgers ist ->
+		Falls ja: alles ok -
+		Fall nein: neuer Knoten -> Knoten < neuer Knoten <= Nachfolger d. Knotens. Anpassung der ersten Position der Fingertabelle. Für jeden weiteren Eintrag, analog. im Nachfolger ebenfalls durch den Vorgänger-
+
+\paragraph*{Cristians Algo}
+	T1: Absenden, T2: Eintreffen Zeitserver, T3: Absenden Antwort Zeitserver; T4: Eintreffen Rechner;
+	T2 -T1: Laufzeit Anfrage; T4-T3: Laufzeit Antwort;
+	Laufzeit in eine Richtung -> Mittel aus beiden Anfragen;
+	Abweichung der Uhr Aufaddieren: ((T2-T1)+(T3-T4)) / 2;
+	NIEMALS RÜCKLAUFEN DER UHR;
+
+\paragraph*{NTP}
+	Implementiert Cristian;
+	Uhr weiss wie gut sie ist;
+
+\paragraph*{Berkely}
+	Aktiver Zeitserver; Fragt Systeme an; Bilden Durschnittszeit; Angleichen;
+	Nur möglich wenn gemeinsame Zeit innerhalb System notwendig;
+
+\paragraph*{In Drahtlosen Systeme}
+	Kommunkation teuer; Reference Broadcast (RBS);
+
+\paragraph*{Logische Uhren}
+	Keine Notwendigkeit bei bei fehlender Wechselwirkung, Nur Ereignisreihenfolge wichtig;
+	Happens-Before-Relation: Alle Prozesse stimmen ein, dass A vor B stattfand.
+		Beispiel: A und B nacheinander im gleichen Prozess -
+		oder A sendet Nachricht, B empfängt diese Nachricht -> A vor B;
+	sind transitiv, Zeitwerte von A ist kleiner als von B;
+	Uhr geht immer vorwärts (Nur Addition)
+
+\paragraph*{Lamportuhr}
+	Vor Ereignis: Erhöhen des Zählers;
+	Bei Transaktion: Zeitstempel (Zähler mitsenden);
+	Bei Empfang: höheren Wert aus (lokalem Zähler und Zeitstempel) nehmen Danach Zähler erhöhen;
+	Keine zwei Ereignisse mit gleicher Zeit.
+
+\paragraph*{Vectorclock}
+	Wie Lamportuhr, jedoch Zähler für jeden Prozess;
+
+\paragraph{Replikation}
+	Caching, Datenverteilung/Duplizierung
+
+\paragraph{Konsistenz}
+	stufenlos: Conit (kleinste konsistente Einheit (Quasiatomar));
+	sequenztiell: Paralleler Datenzugriff (kein falsches lesen);
+	kausal: Schreibvorgänge in Kausaler Beziehung;
+	eventual consistency: schwache Konsistenz, Replikate nach und nach aktualisieren;
+	monotones Lesen: wenn prozess datensatz liesst -> immer x oder aktuelleren Zurückgeben;
+	read your writes: schreiboperation wird immer vor leseoperation abgeschlossen;
+	write follows read: wenn nach lesen geschrieben wird, hat operation aktuellen oder selben wert f. x
+	
+
+\end{document}
