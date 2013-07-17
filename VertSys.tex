@@ -3,8 +3,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 
-
-
 \begin{document}
 
 \paragraph*{Verteiltes System}
@@ -120,10 +118,10 @@
 \paragraph*{Vectorclock}
 	Wie Lamportuhr, jedoch Zähler für jeden Prozess;
 
-\paragraph{Replikation}
+\paragraph*{Replikation}
 	Caching, Datenverteilung/Duplizierung
 
-\paragraph{Konsistenz}
+\paragraph*{Konsistenz}
 	stufenlos: Conit (kleinste konsistente Einheit (Quasiatomar));
 	sequenztiell: Paralleler Datenzugriff (kein falsches lesen);
 	kausal: Schreibvorgänge in Kausaler Beziehung;
@@ -132,5 +130,9 @@
 	read your writes: schreiboperation wird immer vor leseoperation abgeschlossen;
 	write follows read: wenn nach lesen geschrieben wird, hat operation aktuellen oder selben wert f. x
 	
-
+\paragraph*{Byte-Reihenfolge}
+	Big-Endian: Höchstwertiges Bit zuerst (kleinste Speicherstelle);
+	Little-Endian: LSB an kleiner;
+	Network-Byte-Order: Byte-Reihenfolge beim Netzwerkübertragen;
+	Host-Byte-Order: Byte Reihenfolge auf dem System;
 \end{document}
