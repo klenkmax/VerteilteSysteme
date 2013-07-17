@@ -13,8 +13,8 @@
 
 \paragraph*{Ziele für Verteilte Systeme}
 	Gemeinsame Ressourcennutzung;
-	Transparenz (Zugriff, Ort, Migration, Relokation, Replikation, Nebenläufigkeit);
-	Offenheit (Spezifiziert u. Vollständigkeit. Folge: Interoperabel, Portabel) (sei konservativ in dem, was Du sendest, sei tolerant in dem, was Du empfängst);
+	Transparenz (Zugriff, Ort, Migration, Relokation, Replikation, Nebenläufigkeit, Fehler);
+	Offenheit (Spezifiziert u. Vollständigkeit der Schnittstellen. Folge: Interoperabel, Portabel) (sei konservativ in dem, was Du sendest, sei tolerant in dem, was Du empfängst);
 	Skalierbarkeit (Bottleneck, Single Point of Failure, etc) (durch Async, Aufteilung, etc);
 	
 \paragraph*{Cloud}
@@ -29,7 +29,7 @@
 	Hybridformen
 	
 \paragraph{Prozess vs Thread}
-	Thread: leichtgewichter Prozess;
+	Thread: leichtgewichter Prozess mit geteiltem Speicherbereich;
 	LWP: Vergleiche mit Worker in Java;
 
 \paragraph*{Mutex}
@@ -38,10 +38,11 @@
 	Lösungen: 
 		Tokenbasierte (Probleme: Tokenverlust, nur ein Token), 
 		Koordinator (Loadbalanic, etc, aber single point of failure, bottleneck),
-		Dezentraler Koordinator: (Jeder Prozess Kordiniert, Problem: ein Prozess stürzt ab) - 
-		Kordinatorbestimmung: 
+		Dezentrale Koordinatoren: Zugriff nach Votum (Problem: Effizienz, garkein Votum bei sehr vielen Anfragen)
+		verteilt (Ricard und Agrawala): (Jeder Prozess Kordiniert, Problem: ein Prozess stürzt ab)  
+ 		Kordinatorbestimmung: 
 			Bully - Wahlnachricht an Prozesse höhere Nummern|Wenn kein Prozess antwortet, übernimmt Prozess| ansonsten rekursiv weiter,
-			Ring: Nachfolger Übernimmt (oder nächster) (Nachricht wird einmal rumgereicht)
+			Ring: Nachfolger Übernimmt/wird bestimmt (oder nächster) (Nachricht wird einmal rumgereicht)
 
 \paragraph*{ACID}
 	Transaktionskonsitenz:
@@ -71,7 +72,7 @@
 	Umwandeln von strukturieren Daten in Übertragungsformat
 	
 \paragraph*{Serialisierung}
-	Sturkturierte Daten in sequenzielles Format (Speicherung, implementation von marschalling)
+	Sturkturierte Daten in sequenzielles Format (Speicherung, implementation von Marshalling)
 	
 \paragraph*{Kommunikation}
 	persistent: Speicherung in Mittleware bis Zustellung;
@@ -86,14 +87,15 @@
 		Fall nein: neuer Knoten -> Knoten < neuer Knoten <= Nachfolger d. Knotens. Anpassung der ersten Position der Fingertabelle. Für jeden weiteren Eintrag, analog. im Nachfolger ebenfalls durch den Vorgänger-
 
 \paragraph*{Cristians Algo}
+	Neue Zeit: Serverzeit + RTT /2  Genauigkeit: +-(RTT/2 - minÜbertragungszeit);
+	NIEMALS RÜCKLAUFEN DER UHR;
+
+\paragraph*{NTP}
+	Implementiert Cristian, bei der die Bearbeitungszeit der Anfrage raus gerechnet wird;
 	T1: Absenden, T2: Eintreffen Zeitserver, T3: Absenden Antwort Zeitserver; T4: Eintreffen Rechner;
 	T2 -T1: Laufzeit Anfrage; T4-T3: Laufzeit Antwort;
 	Laufzeit in eine Richtung -> Mittel aus beiden Anfragen;
 	Abweichung der Uhr Aufaddieren: ((T2-T1)+(T3-T4)) / 2;
-	NIEMALS RÜCKLAUFEN DER UHR;
-
-\paragraph*{NTP}
-	Implementiert Cristian;
 	Uhr weiss wie gut sie ist;
 
 \paragraph*{Berkely}
@@ -119,6 +121,19 @@
 
 \paragraph*{Vectorclock}
 	Wie Lamportuhr, jedoch Zähler für jeden Prozess;
+
+\paragraph{Globaler Zustand}
+	Alle lokalen Zustände der Prozesse und alle Nachrichten in der Übertragung;
+	
+	\paragraph*{History}
+	Local History: alle Nachrichten eines Prozesses;
+	Global History: alle Nachrichten aller Prozesse;
+	
+	\paragraph*{Cut}
+	Teilmenge der Global History;
+	Frontier des Cuts: die Menge der jeweils letzten Events der Prozesse;
+	Consistent Cut: wenn für alle im Cut enthaltene Events auch ihre Vorgänger enthalten ist;
+	Run: die totale Ordnung in der Global Histroy (konsistent bezüglich Local History);
 
 \paragraph{Replikation}
 	Caching, Datenverteilung/Duplizierung
