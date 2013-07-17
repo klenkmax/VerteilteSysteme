@@ -4,7 +4,7 @@
 \usepackage[ngerman]{babel}
 
 \begin{document}
-%
+%2013-SoSe-MatthiasKranz-VerteilteSysteme-06-Namensraeume-V005-final.pdf
 \paragraph*{Verteiltes System}
 	Ansammlung unabhängiger Computer, die wie ein einzelnes System erscheinen; 
 	Menge interagierender Prozesse, über Nachrichten kommunizierend;
@@ -159,7 +159,29 @@
 	Fix auf Anwendungsebne: Puffer, vorwärsgerichtete Fehlerkorrektur;
 	Synchronisation: auf Datenebene, Steuerungsschnittstelle
 
-\paragraph*{Multicast}
+\paragraph*{Broad/Multicast}
 	Kommunikation zu Gruppe von Empfängern - Ebene: Network/Transporation-Layer;
 	Probleme: Sturktur des Overlay wenig mit Netzstruktur unterliegender Schichten, analog f. Routing;
+	Können zum auffinden von Entitäten verwendet werden;
+
+\paragraph*{Namen, etc}
+	Bezeichner: Für immer Eindeutig;
+	Adresse, Name, FQDN: änderbar;
+
+\paragraph*{Lineare Benennung}
+	Bezeichner aus zufälliger Bitfolge -> Keine Information über Lokalisation
+
+\paragraph*{Lokalisierung}
+	Zeiger: Bei Ortswechsel -> Hinweis auf nächsten Ort etc (Nachteil: Lange Kette, Problem bei gebrochener Kette) [Alternative: Homezone];
+	Alternative DHT, etc (Chord);
+	Hierarchische Systeme: Namensgraph von Startknoten aus (UnixFS, DNS);
+
+\paragraph*{Namensauflösung}
+	Closure-Mechanismus - Wichtig ist das Wissen WIE aufgelöst wird;
+	Alias: Gleiche Entität, anderer Name (z.B. Symbolischer Link);
+
+\paragraph*{Benennung}
+	AttributbasierendJede Entität hat mehrere Attribute) -> Verzeichnisdienst oder via RDF;
+	Hierarchisch: LDAP (Problem: Bei Such nach Attribut, Laufzeit von O($nixGut$));
+	Alternative.: Dezentrale attributbasierende Namenssysteme: DHT, Darstellung als Baum;
 \end{document}
