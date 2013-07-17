@@ -4,7 +4,7 @@
 \usepackage[ngerman]{babel}
 
 \begin{document}
-
+%
 \paragraph*{Verteiltes System}
 	Ansammlung unabhängiger Computer, die wie ein einzelnes System erscheinen; 
 	Menge interagierender Prozesse, über Nachrichten kommunizierend;
@@ -59,12 +59,14 @@
 \paragraph*{RPC}
 	sync. Kontrollfluss/Datenuebergabe, Prozeduraufruf, unterschiedliche Adressräume, schmaler Kanal;
 	parallelität durch asynch;
+	Call by Value -> Marshalling der Parameter
+	Call By Reference -> Verbot von Zeigern und Verweisten  (Kopie);
 	
 \paragraph*{Berkeley Sockets}
 	Schnittstelle f. nachrichtenorientierte, fluechtige Kommunikation
 
 \paragraph*{MPI}
-	\\m/
+	:)
 
 \paragraph*{Marshalling}
 	Umwandeln von strukturieren Daten in Übertragungsformat
@@ -144,10 +146,20 @@
 	monotones Lesen: wenn prozess datensatz liesst -> immer x oder aktuelleren Zurückgeben;
 	read your writes: schreiboperation wird immer vor leseoperation abgeschlossen;
 	write follows read: wenn nach lesen geschrieben wird, hat operation aktuellen oder selben wert f. x
-	
+
 \paragraph*{Byte-Reihenfolge}
 	Big-Endian: Höchstwertiges Bit zuerst (kleinste Speicherstelle);
 	Little-Endian: LSB an kleiner;
 	Network-Byte-Order: Byte-Reihenfolge beim Netzwerkübertragen;
 	Host-Byte-Order: Byte Reihenfolge auf dem System;
+
+\paragraph*{Streams}
+	(a)synchron oder isochron (beschränkert Jitter);
+	Dienstgüte (QoS): min Bitrate, max Verzögerung, max End2End verzögerung; max Jitter, etc;
+	Fix auf Anwendungsebne: Puffer, vorwärsgerichtete Fehlerkorrektur;
+	Synchronisation: auf Datenebene, Steuerungsschnittstelle
+
+\paragraph*{Multicast}
+	Kommunikation zu Gruppe von Empfängern - Ebene: Network/Transporation-Layer;
+	Probleme: Sturktur des Overlay wenig mit Netzstruktur unterliegender Schichten, analog f. Routing;
 \end{document}
