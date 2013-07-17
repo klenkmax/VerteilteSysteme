@@ -120,6 +120,19 @@
 \paragraph*{Vectorclock}
 	Wie Lamportuhr, jedoch Zähler für jeden Prozess;
 
+\paragraph{Globaler Zustand}
+	Alle lokalen Zustände der Prozesse und alle Nachrichten in der Übertragung;
+	
+	\paragraph*{History}
+	Local History: alle Nachrichten eines Prozesses;
+	Global History: alle Nachrichten aller Prozesse;
+	
+	\paragraph*{Cut}
+	Teilmenge der Global History;
+	Frontier des Cuts: die Menge der jeweils letzten Events der Prozesse;
+	Consistent Cut: wenn für alle im Cut enthaltene Events auch ihre Vorgänger enthalten ist;
+	Run: die totale Ordnung in der Global Histroy (konsistent bezüglich Local History);
+
 \paragraph{Replikation}
 	Caching, Datenverteilung/Duplizierung
 
