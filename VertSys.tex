@@ -129,13 +129,25 @@
 	Bei Transaktion: Zeitstempel (Zähler mitsenden);
 	Bei Empfang: höheren Wert aus (lokalem Zähler und Zeitstempel) nehmen Danach Zähler erhöhen;
 	Keine zwei Ereignisse mit gleicher Zeit.
+	LC1: Li wird vor Behandlung eines Events (Senden) in Prozess pi erhöht;
+	LC2: Versand: Setzen des Timestamps pi, b) nach empfang in pj timestamp auf max setzen (entweder TS von Pi, oder pj)
 
 \paragraph*{Vectorclock}
 	Wie Lamportuhr, jedoch Zähler für jeden Prozess;
-
+	VC1: Anfangs VCi = 0 für jedes i,j;
+	VC2: Vor einem Event (Senden) TS von sich erhöhen;
+	VC3: Bei Empfang: Zusammenführung der Timestamps (jeweils max)
 \paragraph*{Globaler Zustand}
 	Alle lokalen Zustände der Prozesse und alle Nachrichten in der Übertragung;
-	
+	Gesamtzustand ist nicht exakt zu bestimmen, da keine Sync. via Uhr möglich;
+
+
+\paragraph*{Lamport vs. Vector Clock}
+	Laport: a -> b, d.h. LaportClock von a < LamportClock b, ABER L(a) < L(b) gilt nicht a -> b, Aber: L(a) >= L(b) d.h. a nicht vor b;
+	Vector: a->b gdw. V(a) < V(b)
+
+
+
 \paragraph*{History}
 	Local History: alle Nachrichten eines Prozesses;
 	Global History: alle Nachrichten aller Prozesse;
@@ -236,5 +248,18 @@
 	HB1: (lokale Ordnung gilt auch global) $\exists$ Prozess pi: e -> e', dann e-> e';
 	HB2: Für jede Nachricht m, send(m) -> recive(m), wobei send/recive(m) das Event der Nachricht ist (send vor recive);
 	HB3: Transitivität: e,e2,e3: e->e2, e2->3, d.h. e->e2;
+
+\paragrah*{(Global) History}
+	Art Linearisierung der Prozesse in Reihenfolge einer ggf happen-before-relation;
+	Run: totale Ordnung einer globalen History, die Konsisten zg. jeder Ordnung der lokalen History;
+	Lineraization (Consistent Run): Ordnung von Events in einer Global History, bezüglich Happend-Before konsistent;
+	Run vs. Consistent State: Nicht alle Runs durchlaufen Consistent Global States, jedoch alle Linearizations nur Consistent Global States
+
+\paragraph*{Cut}
+	Teilmenge der Global History;
+	Frontier: Zustand der Events direkt nach dem Cut;
+	Consistent Cut: Cut, der keine Happen-Before-Relation verletzt (kein Empfang ohne Absender)
+	Consistent Global State: Globaler Zustand entpsircht Endzustand nach Consitent Cut
+	
 
 \end{document}
