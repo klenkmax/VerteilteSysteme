@@ -130,7 +130,7 @@
 	Bei Empfang: höheren Wert aus (lokalem Zähler und Zeitstempel) nehmen Danach Zähler erhöhen;
 	Keine zwei Ereignisse mit gleicher Zeit.
 	LC1: Li wird vor Behandlung eines Events (Senden) in Prozess pi erhöht;
-	LC2: Versand: Setzen des Timestamps pi, b) nach empfang in pj timestamp auf max setzen (entweder TS von Pi, oder pj)
+	LC2: Versand: Setzen des Timestamps pi, b) nach empfang in pj timestamp auf max+1 setzen (entweder TS von Pi, oder pj)
 
 \paragraph*{Vectorclock}
 	Wie Lamportuhr, jedoch Zähler für jeden Prozess;
@@ -253,7 +253,7 @@
 	Art Linearisierung der Prozesse in Reihenfolge einer ggf happen-before-relation;
 	Run: totale Ordnung einer globalen History, die Konsisten zg. jeder Ordnung der lokalen History;
 	Lineraization (Consistent Run): Ordnung von Events in einer Global History, bezüglich Happend-Before konsistent;
-	Run vs. Consistent State: Nicht alle Runs durchlaufen Consistent Global States, jedoch alle Linearizations nur Consistent Global States
+	Run vs. Consistent State: Nicht alle Runs durchlaufen Consistent Global States, jedoch alle Linearizations nur Consistent Global States;
 
 \paragraph*{Cut}
 	Teilmenge der Global History;
