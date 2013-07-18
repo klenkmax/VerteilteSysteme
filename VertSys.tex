@@ -4,7 +4,6 @@
 \usepackage[ngerman]{babel}
 
 \begin{document}
-%2013-SoSe-MatthiasKranz-VerteilteSysteme-06-Namensraeume-V005-final.pdf
 \paragraph*{Verteiltes System}
 	Ansammlung unabhängiger Computer, die wie ein einzelnes System erscheinen; 
 	Menge interagierender Prozesse, über Nachrichten kommunizierend;
@@ -97,6 +96,8 @@
 	Laufzeit in eine Richtung -> Mittel aus beiden Anfragen;
 	Abweichung der Uhr Aufaddieren: ((T2-T1)+(T3-T4)) / 2;
 	Uhr weiss wie gut sie ist;
+	Berechnungen (8x) von Laufzeit und Abweichung. Verwendung dieses Wertepaars;
+	Gleiches Stratum -> Abgleich, ansonsten nur größerer Stratum update;
 
 \paragraph*{Berkely}
 	Aktiver Zeitserver; Fragt Systeme an; Bilden Durschnittszeit; Angleichen;
@@ -184,4 +185,11 @@
 	AttributbasierendJede Entität hat mehrere Attribute) -> Verzeichnisdienst oder via RDF;
 	Hierarchisch: LDAP (Problem: Bei Such nach Attribut, Laufzeit von O($nixGut$));
 	Alternative.: Dezentrale attributbasierende Namenssysteme: DHT, Darstellung als Baum;
+
+\paragraph*{Uhren}
+	Physiaklische Uhren: Hardware (Quarz, Registermagie) -> Dirft;
+
+\paragraph*{GPS}
+	Funktion: Triangulation (Zeit, Ausbreitungsgeschwindigkeit);
+	Probleme: Ungenaue Referenzkoordinaten, Multipfadausbreitung, Ionospährische/etc Verzögerungen, Uhrsync, Geometrie, Postionsmeldung;
 \end{document}
