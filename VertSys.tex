@@ -126,11 +126,11 @@
 \paragraph{Globaler Zustand}
 	Alle lokalen Zustände der Prozesse und alle Nachrichten in der Übertragung;
 	
-	\paragraph*{History}
+\paragraph*{History}
 	Local History: alle Nachrichten eines Prozesses;
 	Global History: alle Nachrichten aller Prozesse;
 	
-	\paragraph*{Cut}
+\paragraph*{Cut}
 	Teilmenge der Global History;
 	Frontier des Cuts: die Menge der jeweils letzten Events der Prozesse;
 	Consistent Cut: wenn für alle im Cut enthaltene Events auch ihre Vorgänger enthalten ist;
@@ -138,15 +138,21 @@
 
 \paragraph{Replikation}
 	Caching, Datenverteilung/Duplizierung
+	Plazierung der Server: gleichmäßig (z.B. Minimaler Abstand im Graph).
+	Verwaltung: Aktualisierungsbenachrichtigung Weiterleiten, Push/Pullansatz
 
 \paragraph*{Konsistenz}
+	Wichtig: Vermeindung von Konsistenzproblemen;
 	stufenlos: Conit (kleinste konsistente Einheit (Quasiatomar));
 	sequenztiell: Paralleler Datenzugriff (kein falsches lesen);
-	kausal: Schreibvorgänge in Kausaler Beziehung;
+	kausal: Schreibvorgänge in Kausaler Beziehung (Lesen vor Schreiben, keine Konflikte)
 	eventual consistency: schwache Konsistenz, Replikate nach und nach aktualisieren;
 	monotones Lesen: wenn prozess datensatz liesst -> immer x oder aktuelleren Zurückgeben;
 	read your writes: schreiboperation wird immer vor leseoperation abgeschlossen;
 	write follows read: wenn nach lesen geschrieben wird, hat operation aktuellen oder selben wert f. x
+
+\paragraph*{Operationsgruppierungen}
+	Kritische Bereiche;
 
 \paragraph*{Byte-Reihenfolge}
 	Big-Endian: Höchstwertiges Bit zuerst (kleinste Speicherstelle);
