@@ -17,7 +17,7 @@
 \paragraph*{Cloud}
 	Abstraktion: logische / physikalische Transparenz; 
 
-\paragraph{Architekturen}
+\paragraph*{Architekturen}
 	Geschichtet:ISO/OSI, Multi-Tier, Drei-Tier (Dispatch-Worker), Middleware;
 	Ereignisbasiert: Push/Subscribe
 	Objektbasiert: RMI/RPC;
@@ -25,7 +25,7 @@
 	Dezentral: Overlay: Mutlicast auf Anwendungsbene, P2P (Superpeer-Konzept);
 	Hybridformen
 	
-\paragraph{Prozess vs Thread}
+\paragraph*{Prozess vs Thread}
 	Thread: leichtgewichter Prozess mit geteiltem Speicherbereich;
 	LWP: Vergleiche mit Worker in Java;
 
@@ -78,7 +78,7 @@
 	persistent: Speicherung in Mittleware bis Zustellung;
 	transient (flüchtig): Anwendungsausführungszeit
 
-\paragraph{Chord}
+\paragraph*{Chord}
 	Entität mit Schlüssel k -> Konten mit Bezeichner id >= k (bzw. k <= id). Nachfolger von k;
 	Suche: Knoten betrachtet Vogänger und Nachfolger, wenn Vorgängern < k < Konten -> Knoten zuständig, sonst weiterleitung;
 	Bei Fingertabelle: Ordne Schlüssel bei einträgen ein Eintrag i < k < Eintrag i+1 => Weiterleitung Eintrag 1 -> Sonst k an Knoten;
@@ -124,7 +124,7 @@
 \paragraph*{Vectorclock}
 	Wie Lamportuhr, jedoch Zähler für jeden Prozess;
 
-\paragraph{Globaler Zustand}
+\paragraph*{Globaler Zustand}
 	Alle lokalen Zustände der Prozesse und alle Nachrichten in der Übertragung;
 	
 \paragraph*{History}
@@ -137,7 +137,7 @@
 	Consistent Cut: wenn für alle im Cut enthaltene Events auch ihre Vorgänger enthalten ist;
 	Run: die totale Ordnung in der Global Histroy (konsistent bezüglich Local History);
 
-\paragraph{Replikation}
+\paragraph*{Replikation}
 	Caching, Datenverteilung/Duplizierung
 	Plazierung der Server: gleichmäßig (z.B. Minimaler Abstand im Graph).
 	Verwaltung: Aktualisierungsbenachrichtigung Weiterleiten, Push/Pullansatz
@@ -214,4 +214,13 @@
 	*a \^= *b ; *b \^= *a ; *a \^= *b;:;
 	Algo wie aus A\&D
 
+\paragraph*{Middleware}
+	Schicht zwischen Anwendungen;
+	Ziel: Verteilungstransparenz;
+	Kosten: Mehraufwand f. Steuerung;
+
+\paragraph*{TCP vs. UDP}
+	TCP: Verbindungsorientiert, Fluss/Übertragungssteuerung, Segmentierung, Retransmission, Verlustfreiheit;
+	UDP: Paketbasiert, KEINERLEI Fluss/Übertragungssteuerung;
+	
 \end{document}
