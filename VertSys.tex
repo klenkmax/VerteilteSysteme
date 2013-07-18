@@ -4,7 +4,7 @@
 \usepackage[ngerman]{babel}
 
 
-%todo: intern/extern synchro erklären
+%todo: lattice, intern/extern synchro erklären
 \begin{document}
 \paragraph*{Verteiltes System}
 	Ansammlung unabhängiger Computer, die wie ein einzelnes System erscheinen; 
@@ -137,16 +137,14 @@
 	VC1: Anfangs VCi = 0 für jedes i,j;
 	VC2: Vor einem Event (Senden/Empfangen) TS von sich erhöhen;
 	VC3: Bei Empfang: Zusammenführung der Timestamps (jeweils max)
+
 \paragraph*{Globaler Zustand}
 	Alle lokalen Zustände der Prozesse und alle Nachrichten in der Übertragung;
 	Gesamtzustand ist nicht exakt zu bestimmen, da keine Sync. via Uhr möglich;
 
-
 \paragraph*{Lamport vs. Vector Clock}
 	Laport: a -> b, d.h. LaportClock von a < LamportClock b, ABER L(a) < L(b) gilt nicht a -> b, Aber: L(a) >= L(b) d.h. a nicht vor b;
 	Vector: a->b gdw. V(a) < V(b)
-
-
 
 \paragraph*{History}
 	Local History: alle Nachrichten eines Prozesses;
@@ -260,6 +258,16 @@
 	Frontier: Zustand der Events direkt nach dem Cut;
 	Consistent Cut: Cut, der keine Happen-Before-Relation verletzt (kein Empfang ohne Absender)
 	Consistent Global State: Globaler Zustand entpsircht Endzustand nach Consitent Cut
+
+\paragraph*{Global State Predicate}
+	Funktion die eine Menge von Gobalen Zuständen auf True, False abbildet;
+	Stable Predicate: Bleibt true, sobald einmal gesetzt;
+	Unstable Predicate: Kann zukünfitgen Wert ändern;
+	Possibly: Es gibt einen consistent global State, durch den eine Linearization läuft, sodass H true gibt;
+	Definitely: für alle L aus H gibt es einen consistent global state, sodass diese true sind;
 	
+\paragraph*{Snapshot Algorithm}
+	Voraussetzungen: Keinen Fehler in Kommuikation/Prozessen -> jede gesendete Nachricht genau einmal, Kanäle sind Unidirektional, FIFO geordnete Nachrichtenzustellung, Graph der Kanäle und Prozesse sind vollständig, Jeder Prozesss kann Algo starten, Während Ausführung können Prozesse weiterlaufen;
+
 
 \end{document}
