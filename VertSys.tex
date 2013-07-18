@@ -4,7 +4,7 @@
 \usepackage[ngerman]{babel}
 
 
-%todo: lattice, intern/extern synchro erklären
+%todo: lattice
 \begin{document}
 \paragraph*{Verteiltes System}
 	Ansammlung unabhängiger Computer, die wie ein einzelnes System erscheinen; 
@@ -90,7 +90,7 @@
 		Fall nein: neuer Knoten -> Knoten < neuer Knoten <= Nachfolger d. Knotens. Anpassung der ersten Position der Fingertabelle. Für jeden weiteren Eintrag, analog. im Nachfolger ebenfalls durch den Vorgänger-
 
 \paragraph*{Cristians Algo}
-	externe Synchro;
+	externe Synchronisation: externe als perfekt angenommene Uhr;
 	Neue Zeit: Serverzeit + RTT /2  Genauigkeit: +-(RTT/2 - minÜbertragungszeit);
 	(Setzen der Uhr auf: Server gemeldete Zeit + RTT/2);
 	NIEMALS RÜCKLAUFEN DER UHR;
@@ -108,7 +108,7 @@
 	Synchronisationsmodi: Multicast (Server schickt periodisch aktuelle Zeit per Multicast, geringe Genaugigkeit), Procedure-Call-Modus: Ähnlich Cristian Algorigmus (Mittlere Genauigkeit), Symmetrischer Modus: Wechselseitiger Austausch von Zeitstempeln (hohe Genauigkeit); 
 
 \paragraph*{Berkely}
-	interne Synchro;
+	interne Synchronisation: basierend auf einzelnen Zeitwerden eine korrekte, globale Zeitbasis;
 	Aktiver Zeitserver; Fragt Systeme an; Bilden Durschnittszeit; Angleichen;
 	Nur möglich wenn gemeinsame Zeit innerhalb System notwendig;
 	Zur Fehlervermeidung: Nur Mittelwert aus Uhren mit best. Abweichung;
