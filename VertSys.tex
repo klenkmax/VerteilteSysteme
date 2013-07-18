@@ -269,5 +269,10 @@
 \paragraph*{Snapshot Algorithm}
 	Voraussetzungen: Keinen Fehler in Kommuikation/Prozessen -> jede gesendete Nachricht genau einmal, Kanäle sind Unidirektional, FIFO geordnete Nachrichtenzustellung, Graph der Kanäle und Prozesse sind vollständig, Jeder Prozesss kann Algo starten, Während Ausführung können Prozesse weiterlaufen;
 
+\paragraph*{Multikasten}
+	Reliable Multicast: Integrität (Nachricht nur einmal zustellen), Validität (Nachricht wird zugestellt), Agreement (Wenn Prozess Nachricht empfängt haben alle empfangen);
+	Kausale Ordnung: Ein Multicast findet (via Happen-Before) vor dem nächsten Statt;
+	Total: Prozesse stellen alle Multicastnachrichten in gleiche Reihenfolge zu
+
 
 \end{document}
