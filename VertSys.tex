@@ -4,7 +4,7 @@
 \usepackage[ngerman]{babel}
 
 
-%todo: satz 7 ab 4 + intern/extern synchro erklären
+%todo: intern/extern synchro erklären
 \begin{document}
 \paragraph*{Verteiltes System}
 	Ansammlung unabhängiger Computer, die wie ein einzelnes System erscheinen; 
@@ -105,6 +105,7 @@
 	Uhr weiss wie gut sie ist;
 	Berechnungen (8x) von Laufzeit und Abweichung. Verwendung dieses Wertepaars;
 	Gleiches Stratum -> Abgleich, ansonsten nur größerer Stratum update;
+	Synchronisationsmodi: Multicast (Server schickt periodisch aktuelle Zeit per Multicast, geringe Genaugigkeit), Procedure-Call-Modus: Ähnlich Cristian Algorigmus (Mittlere Genauigkeit), Symmetrischer Modus: Wechselseitiger Austausch von Zeitstempeln (hohe Genauigkeit); 
 
 \paragraph*{Berkely}
 	interne Synchro;
@@ -231,4 +232,9 @@
 	TCP: Verbindungsorientiert, Fluss/Übertragungssteuerung, Segmentierung, Retransmission, Verlustfreiheit;
 	UDP: Paketbasiert, KEINERLEI Fluss/Übertragungssteuerung;
 	
+\paragraph*{Happend-Before-Relation}
+	HB1: (lokale Ordnung gilt auch global) $\exists$ Prozess pi: e -> e', dann e-> e';
+	HB2: Für jede Nachricht m, send(m) -> recive(m), wobei send/recive(m) das Event der Nachricht ist (send vor recive);
+	HB3: Transitivität: e,e2,e3: e->e2, e2->3, d.h. e->e2;
+
 \end{document}
