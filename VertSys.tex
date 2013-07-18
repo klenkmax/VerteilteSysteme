@@ -135,7 +135,7 @@
 \paragraph*{Vectorclock}
 	Wie Lamportuhr, jedoch Zähler für jeden Prozess;
 	VC1: Anfangs VCi = 0 für jedes i,j;
-	VC2: Vor einem Event (Senden) TS von sich erhöhen;
+	VC2: Vor einem Event (Senden/Empfangen) TS von sich erhöhen;
 	VC3: Bei Empfang: Zusammenführung der Timestamps (jeweils max)
 \paragraph*{Globaler Zustand}
 	Alle lokalen Zustände der Prozesse und alle Nachrichten in der Übertragung;
@@ -245,7 +245,7 @@
 	UDP: Paketbasiert, KEINERLEI Fluss/Übertragungssteuerung;
 	
 \paragraph*{Happend-Before-Relation}
-	HB1: (lokale Ordnung gilt auch global) $\exists$ Prozess pi: e -> e', dann e-> e';
+	HB1: (lokale Ordnung gilt auch global) (Wenn a -> b, ist auch die Uhr entsprechend)$\exists$ Prozess pi: e -> e', dann e-> e';
 	HB2: Für jede Nachricht m, send(m) -> recive(m), wobei send/recive(m) das Event der Nachricht ist (send vor recive);
 	HB3: Transitivität: e,e2,e3: e->e2, e2->3, d.h. e->e2;
 
