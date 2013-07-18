@@ -88,8 +88,11 @@
 		Fall nein: neuer Knoten -> Knoten < neuer Knoten <= Nachfolger d. Knotens. Anpassung der ersten Position der Fingertabelle. Für jeden weiteren Eintrag, analog. im Nachfolger ebenfalls durch den Vorgänger-
 
 \paragraph*{Cristians Algo}
+	externe Synchro;
 	Neue Zeit: Serverzeit + RTT /2  Genauigkeit: +-(RTT/2 - minÜbertragungszeit);
+	(Setzen der Uhr auf: Server gemeldete Zeit + RTT/2);
 	NIEMALS RÜCKLAUFEN DER UHR;
+	Probleme: Server fällt aus, Server sendet falsch, Probleme im Netz;
 
 \paragraph*{NTP}
 	Implementiert Cristian, bei der die Bearbeitungszeit der Anfrage raus gerechnet wird;
@@ -195,7 +198,7 @@
 	Alternative.: Dezentrale attributbasierende Namenssysteme: DHT, Darstellung als Baum;
 
 \paragraph*{Uhren}
-	Physiaklische Uhren: Hardware (Quarz, Registermagie) -> Dirft;
+	Physiaklische Uhren: Hardware (Quarz, Registermagie) -> Dirft (Thermisch) - Abweichung zwischen Uhren Skew;
 
 \paragraph*{GPS}
 	Funktion: Triangulation (Zeit, Ausbreitungsgeschwindigkeit);
